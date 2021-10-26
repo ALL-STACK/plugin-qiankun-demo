@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+  <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+  <meta HTTP-EQUIV="expires" CONTENT="0">
+
+  <title>轻量化应用开发平台</title>
+  <style>
+    * {
+      font-display: swap !important;
+      font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei' !important;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    轻量化应用开发平台是一站式软件研发管理平台，提供 Git代码托管、制品库、代码构建、容器资源、API及套件市场，支持开发者基于云原生架构以敏捷开发模式快速开发、测试、部署与运维及监控告警，助力研发效能升级。
+  </noscript>
+  <!-- <div id="root"></div> -->
+  <script type="text/javascript">
+    const url = 'https://cdn.jsdelivr.net/gh/irozhi/HarmonyOS-Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Medium.woff';
+    const style = document.createElement('style');
+    style.textContent = `@font-face {
+      font-family: HarmonyOS Sans SC;
+      font-weight: 400;
+      font-style: normal;
+      src: url("${url}") format('woff');
+    }`;
+    window.onload = () => {
+      document.head.appendChild(style);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+@import '~antd/lib/style/themes/default.less';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 800px;
+  height: 100%;
+  overflow: auto;
+  background-image: url('../../assets/login_back.svg');
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0px, 0px;
+  background-size: cover;
+  width: 100%;
+  background-color: #272a3a;
+  -webkit-background-size: cover; /* 兼容Webkit内核浏览器如Chrome和Safari */
+  -o-background-size: cover; /* 兼容Opera */
+}
+
+.content-wrapper,
+.content-wrapper-off {
+  position: fixed;
+  top: calc(50% - 267px);
+  right: 8%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.content-wrapper-off {
+  top: calc(50% - 223px);
+}
+
+.content {
+  width: 410px;
+  padding: 41px 58px 41px 59px;
+  background-color: #222b7d;
+  border-radius: 15px;
+}
+
+.form {
+  :global {
+    .ant-form-item-label > label {
+      width: 100%;
+      color: #fff;
+    }
+  }
+}
+
+.pwd-title-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .forgot-pwd {
+    padding-right: 12px;
+    color: #cac9ff;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .content {
+    // padding: 50px 58px 44px 59px;
+    width: 410px;
+  }
+}
+
+.logo {
+  width: 209px;
+  height: 54px;
+  vertical-align: top;
+  position: fixed;
+  top: 32px;
+  left: 32px;
+  z-index: 1;
+}
+
+.banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-70%, -50%);
+  -webkit-transform: translate(-70%, -50%);
+  -ms-transform: translate(-70%, -50%);
+  -moz-transform: translate(-70%, -50%);
+  -o-transform: translate(-70%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('../../assets/login_banner.svg');
+  background-repeat: no-repeat center;
+  background-position: 0px, 0px;
+  background-size: cover;
+  -webkit-background-size: cover; /* 兼容Webkit内核浏览器如Chrome和Safari */
+  -o-background-size: cover; /* 兼容Opera */
+}
+
+@media screen and (max-width: 1920px) {
+  .banner {
+    width: 853px;
+    height: 549px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .banner {
+    width: 1153px;
+    height: 743px;
+  }
+}

@@ -1,0 +1,94 @@
+.cluster{
+  .queryHeard {
+    height: 93px;
+    background: #2B2B47;
+    display: flex;
+    justify-content: space-between;
+    
+    .title {
+      padding-left: 113px;
+      line-height: 93px;
+      color: #fff;
+      font-size: 21px;
+    }
+    .query {
+      display: flex;
+      position: relative;
+      padding-right: 120px;
+      .search {
+        position: absolute;
+        bottom: 18px;
+        right: 10px;
+      }
+      .item {
+        margin-left: 15px;
+        .itemTitle {
+          font-size: 14px;
+          color: #BFC1D5;
+          margin-bottom: 8px;
+          margin-top: 14px;
+        }
+        :global {
+          .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+            background-color: #2B2B47;
+            border-radius: 4px;
+            border: 1px solid #BFC1D5;
+          }
+          .ant-select-single.ant-select-show-arrow .ant-select-selection-item {
+            color: #fff;
+          }
+          .ant-select-arrow {
+            color: #BFC1D5;
+          }
+        }
+      }
+    }
+  } 
+  .table {
+    margin: 24px 81px;
+    background: #fff;
+    :global {
+      .ant-table-thead > tr > th {
+        background: rgba(198, 213, 254, 0.28);
+        // text-align: center;
+        font-size: 16px;
+        color: #333;
+      }
+      .ant-pagination-total-text {
+        position: absolute;
+        left: 0;
+      }
+      .ant-pagination-options {
+        position: absolute;
+        right: 0;
+      }
+    }
+    .environment {
+      .title {
+        font-size: 16px;
+        color: #2A62FF;
+        .tag {
+          display: inline-block;
+          font-size: 12px;
+          color: #FFFFFF;
+          width: 44px;
+          height: 18px;
+          background: #AFAFAF;
+          border-radius: 2px;
+          text-align: center;
+          line-height: 18px;
+        }
+      }
+      .time {
+        font-size: 14px;
+        color: #757482;
+      }
+    }
+    .usage {
+      >div {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  skip_verify: true
+
+steps:
+  - name: check_version
+    image: harbor.wh.ctrm/plugin/drone-plugin-version:2021.0.0
+    settings:
+      gitea_url: "https://git.wh.ctrm"
+      gitea_token:
+        from_secret: gitea_token
+
+  - name: yarn_build
+    image: node:14-slim
+    commands:
+      - mkdir -p /tmp/cache/${DRONE_REPO_NAMESPACE}/${DRONE_REPO_NAME}/node_modules
+      - ln -s /tmp/cache/${DRONE_REPO_NAMESPACE}/${DRONE_REPO_NAME}/node_modules /drone/src/node_modules
+      - yarn install
+      - yarn run build
+    environment:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+    volumes:
+      - name: drone_home
+        path: /root
+      - name: drone_cache
+        path: /tmp/cache
+
+  - name: docker_build
+    image: plugins/docker:19.03
+    settings:
+      daemon_off: true
+      password:
+        from_secret: harbor_password
+      registry: harbor.wh.ctrm
+      repo: harbor.wh.ctrm/${DRONE_REPO_NAMESPACE}/${DRONE_REPO_NAME}
+      username: droneci
+    volumes:
+      - name: docker_sock
+        path: /var/run/docker.sock
+
+  - name: update_version
+    image: harbor.wh.ctrm/plugin/drone-plugin-k8s:2021.0.0
+    settings:
+      enabled: true
+      k8s_master:
+        from_secret: k8s_master
+      k8s_token:
+        from_secret: k8s_token
+      namespace:
+        from_secret: k8s_namespace
+      app_name: ${DRONE_REPO_NAME}
+
+  - name: notify
+    image: harbor.wh.ctrm/plugin/drone-plugin-feishu:2021.0.0
+    settings:
+      webhook:
+        from_secret: feishu_webhook
+      sign_secret:
+        from_secret: feishu_sign_secret
+    when:
+      status:
+        - failure
+        - success
+
+volumes:
+  - name: docker_sock
+    host:
+      path: /var/run/docker.sock
+  - name: drone_home
+    host:
+      path: /data/drone/home
+  - name: drone_cache
+    host:
+      path: /data/drone/cache
+
+image_pull_secrets:
+  - docker_config
+
+trigger:
+  branch:
+    - dev
+    - fix
+    - next
+  event:
+    - push
+
+...
