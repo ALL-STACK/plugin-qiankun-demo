@@ -29,7 +29,13 @@ const Index = ({ dispatch, global }: any) => {
       <h1>欢迎欢迎，热烈欢迎</h1>
       <Button type="primary" onClick={() => setVisible(true)}>打开子应用</Button>
       <Drawer title="子应用" width={800} visible={visible} onClose={() => setVisible(false)} closable maskClosable>
-        <MicroAppWithMemoHistory name="client-pc" url="/" />
+        {/* 
+        // 子项目入口
+        <MicroAppWithMemoHistory name="client-pc" url="/" /> 
+        
+        */}
+        {/* 孙子项目入口 */}
+        <MicroAppWithMemoHistory name="client-pc" url="/core" />
       </Drawer>
     </div>
   );
